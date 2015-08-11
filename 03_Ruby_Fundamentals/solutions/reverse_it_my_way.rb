@@ -10,7 +10,7 @@ def my_reverse(string)
 	word.capitalize #this is what will be returned because it's the last line
 end
 
-def is_palindrome?(word)
+def is_palindrome?(word) 
 	if word.downcase.strip ==  my_reverse(word).downcase
 		"Yes! Palindrome!"
 	else
