@@ -1,6 +1,5 @@
 #1 - Pull the json from the reddit API via http://www.reddit.com/.json
   # - http://mashable.com/stories.json (homework)
-  # - http://digg.com/api/news/popular.json (Homework)
 #2 - Parse it using the JSON library
 #3 - Find the stories based on techniques used in the code_along (max of 25 provided)
 #4 - Create a new story hash out of each story with the following keys :title, :upvotes and :category
@@ -15,6 +14,7 @@ require 'rest-client'
 require 'pry'
 require 'json'
 
+<<<<<<< HEAD
 def connect_to_api(url) #connect to the API, pass in endpoint
   response = RestClient.get(url) #use a get request, give it the URL
   JSON.parse(response) #parse with JSON
@@ -42,3 +42,36 @@ reddit_url = "http://www.reddit.com/.json"
 reddit_json_response = connect_to_api(reddit_url)
 stories = find_stories(reddit_json_response)
 print_stories(stories)
+=======
+def connect_to_api(url)
+  response = RestClient.get(url)
+  JSON.parse(response)
+end
+
+def find_stories(response)
+  stories = response["data"]["children"]
+  puts "*******Reddit has blessed us with #{stories.count} stories *******"
+  return stories
+end
+
+def print_stories(stories)
+  stories.each do |story|
+    create_story_hash(story["data"])
+  end
+end
+
+def create_story_hash(story)
+  {category: story["subreddit"], title: story["title"], upvotes: story["ups"]}
+end
+
+reddit_url ="http://www.reddit.com/.json"
+reddit_json_response = connect_to_api(reddit_url)
+stories = find_stories(reddit_json_response)
+print_stories(stories)
+
+
+
+
+
+#####
+>>>>>>> 9820dfcf401632fdcbd84d587589989c35b4ffe7
